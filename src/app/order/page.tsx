@@ -11,14 +11,15 @@ export default function Order() {
 
     try {
       const sendEmail = await fetch('https://studiopresto.vercel.app/api/email', {
+      // const sendEmail = await fetch('http://localhost:3000/api/email', {
         method: 'POST',
         body: JSON.stringify({ cartList, totalPrice }),
       })
-
+      console.log(sendEmail)
       const data = await sendEmail.json()
       console.log(data)
     } catch (error) {
-      throw new Error()
+      throw new Error('Error sending email')
     }
   }
 

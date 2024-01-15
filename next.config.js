@@ -9,15 +9,15 @@ const nextConfig = {
       },
     ],
   },
-  // async redirects() {
-  //   return [
-  //     {
-  //       source: '/',
-  //       destination: '/products',
-  //       permanent: false,
-  //     },
-  //   ]
-  // },
+  async redirects() {
+    return [
+      {
+        source: '/',
+        destination: '/products',
+        permanent: false,
+      },
+    ]
+  },
 }
 
 module.exports = nextConfig

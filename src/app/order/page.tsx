@@ -14,7 +14,7 @@ export default function Order() {
         method: 'POST',
         body: JSON.stringify({ cartList, totalPrice }),
       })
-      console.log(sendEmail)
+      
       const data = await sendEmail.json()
       console.log(data)
     } catch (error) {

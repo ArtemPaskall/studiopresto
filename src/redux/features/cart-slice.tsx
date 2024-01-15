@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { Product, CartState, CartItem } from '@/../types'
+import { Product, CartState, CartItem } from '../../../types'
 
 const calculateTotalPrice = (cartList: CartItem[]) => {
   return cartList.reduce((acc, cartItem) => {

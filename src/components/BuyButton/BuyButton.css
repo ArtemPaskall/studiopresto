@@ -1,0 +1,32 @@
+.card__buy {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #1c314e;
+  border: 2px solid #1c314e;
+  width: 90px;
+  padding: 2px 0;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s;
+  position: relative;
+}
+
+.card__buy:hover {
+  color: #fff;
+  background-color: #1c314e;
+}
+
+.modal {
+  position: absolute;
+  top: -75px;
+  right: 45px;
+  color: #71a8f5;
+  background-color: rgb(243, 243, 243);
+  border: 1px solid black;
+  white-space: 'nowrap';
+  width: 150px;
+  text-align: center;
+  padding: 5px 10px;
+  border-radius: 20px;
+}

@@ -1,0 +1,15 @@
+.order-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.input {
+  width: 300px;
+  height: 40px;
+  background-color: #e8e9ea;
+  margin-top: 10px;
+  padding: 10px;
+  outline: none;
+}

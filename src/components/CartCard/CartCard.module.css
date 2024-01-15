@@ -1,0 +1,111 @@
+.card {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  height: 100%;
+  min-height: 200px;
+  color: #1c314e;
+  padding: 10px;
+  position: relative;
+  transition:
+    transform 0.3s ease-in-out,
+    opacity 0.3s ease-in-out;
+}
+
+.card.removing {
+  transform: translateX(-300px);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.card:hover {
+  background-color: rgb(247, 247, 250);
+}
+
+.card__image {
+  height: 170px;
+  width: auto;
+  max-width: 150px;
+  object-fit: contain;
+}
+
+.card__content {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 10px 40px;
+}
+
+.card__title {
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.card__delete-icon {
+  position: absolute;
+  right: 8px;
+  top: 6px;
+  transition: all 0.3s;
+  width: 20px;
+  height: auto;
+}
+
+.card__delete-icon:hover {
+  transform: scale(1.2);
+}
+
+.card__descriprion {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-end;
+  width: 100%;
+  height: 100%;
+}
+
+.card__category-price {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 10px;
+}
+
+.card__category {
+  font-size: 1rem;
+  font-style: italic;
+}
+
+.card__price {
+  font-size: 1.2rem;
+  color: #ff8159;
+  font-weight: bold;
+}
+
+.total-price {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  border-bottom: 2px solid #249654;
+  margin-top: 20px;
+}
+
+.total-price__title {
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.total-price__value {
+  font-size: 1.2rem;
+  color: rgb(53, 192, 53);
+  font-weight: bold;
+}

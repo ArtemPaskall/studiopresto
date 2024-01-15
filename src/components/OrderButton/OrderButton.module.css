@@ -1,0 +1,20 @@
+.order-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  background-color: rgb(58, 144, 58);
+  width: 250px;
+  height: 50px;
+  color: white;
+  font-weight: bold;
+  font-size: 24px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  cursor: pointer;
+  margin-bottom: 50px;
+}
+
+.order-button:hover {
+  background-color: rgb(38, 93, 38);
+}

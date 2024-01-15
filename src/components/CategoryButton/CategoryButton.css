@@ -1,0 +1,26 @@
+.category__button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #1c314e;
+  border: 2px solid #1c314e;
+  width: 280px;
+  padding: 7px 0;
+  font-weight: bold;
+  margin-top: 5px;
+  cursor: pointer;
+  transition: all 0.3s;
+  text-transform: uppercase;
+}
+
+.category__button:hover {
+  background-color: #ff8159;
+  border-color: #ff8159;
+  color: #fff;
+}
+
+.category__button--active {
+  background-color: #ff8159;
+  border-color: #ff8159;
+  color: #fff;
+}

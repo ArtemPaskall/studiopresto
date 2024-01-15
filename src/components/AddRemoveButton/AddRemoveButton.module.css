@@ -1,0 +1,52 @@
+.button__wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 60px;
+  height: 35px;
+  color: white;
+  font-size: 30px;
+  font-weight: bold;
+  transition: all 0.3s;
+  box-sizing: border-box;
+}
+
+.button__minus {
+  background-color: rgb(246, 44, 44);
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+
+.button__minus:hover {
+  background-color: rgb(180, 48, 48);
+}
+
+.button__plus {
+  background-color: rgb(53, 192, 53);
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+.button__plus:hover {
+  background-color: rgb(48, 120, 48);
+}
+
+.button__quantity {
+  height: 35px;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-top: 1px solid rgb(162, 162, 162);
+  border-bottom: 1px solid rgb(162, 162, 162);
+  padding: 5px 14px;
+  font-size: 16px;
+  font-weight: bold;
+  color: rgb(107, 106, 106);
+}

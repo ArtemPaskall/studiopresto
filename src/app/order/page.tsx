@@ -8,6 +8,7 @@ export default function Order() {
   const { cartList, totalPrice } = useSelector(selectCart)
 
   const sendMail = async () => {
+
     try {
       const sendEmail = await fetch('https://studiopresto.vercel.app/api/email', {
         method: 'POST',

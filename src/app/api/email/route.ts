@@ -1,8 +1,14 @@
 import { Resend } from 'resend'
 import { NextResponse } from 'next/server'
 import EmailTemplate from '../../../components/EmailTemplate/EmailTemplate'
+import cors from 'cors'
 
-export async function POST(req: any) {
+const corsMiddleware = cors({
+  methods: ['POST'],
+})
+
+export async function POST(req: any, res: any, next: any) {
+  await corsMiddleware(req, res, next)
   const body = await req.json()
 
   const resend = new Resend(process.env.RESEND_API_KEY)

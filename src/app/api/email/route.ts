@@ -1,19 +1,13 @@
 import { Resend } from 'resend'
 import { NextResponse } from 'next/server'
 import EmailTemplate from '../../../components/EmailTemplate/EmailTemplate'
-import cors from 'cors'
 
-// const corsMiddleware = cors({
-//   methods: ['POST'],
-// })
-
-export async function POST(req: any, res: any, next: any) {
-  // await corsMiddleware(req, res, next)
-  const body = await req.json()
-  console.log('body', body)
-  const resend = new Resend(process.env.RESEND_API_KEY)
-
+export async function POST(req: any) {
   try {
+    const body = await req.json()
+
+    const resend = new Resend(process.env.RESEND_API_KEY)
+
     const { data } = await resend.emails.send({
       from: 'Acme <onboarding@resend.dev>',
       to: ['artem.yogi@gmail.com'],
@@ -23,7 +17,6 @@ export async function POST(req: any, res: any, next: any) {
 
     return NextResponse.json(data)
   } catch (error) {
-    // console.error('Error sending email:', error)
-    // return NextResponse.error()
+    return NextResponse.error()
   }
 }

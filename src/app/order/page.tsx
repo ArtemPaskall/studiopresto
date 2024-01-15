@@ -11,7 +11,6 @@ export default function Order() {
 
     try {
       const sendEmail = await fetch('/api/email', {
-      // const sendEmail = await fetch('/api/email', {
         method: 'POST',
         body: JSON.stringify({ cartList, totalPrice }),
       })

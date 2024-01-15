@@ -17,7 +17,7 @@ export default function Order() {
       const data = await sendEmail.json()
       console.log(data)
     } catch (error) {
-      throw new Error('asdfasfd')
+      throw new Error()
     }
   }
 

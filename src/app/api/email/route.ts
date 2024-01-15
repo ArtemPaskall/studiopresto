@@ -9,8 +9,8 @@ export async function POST(req: any) {
     const resend = new Resend(process.env.RESEND_API_KEY)
 
     const { data } = await resend.emails.send({
-      from: 'Acme <onboarding@resend.dev>',
-      to: ['artem44.yogi@gmail.com'],
+      from: 'Studiopresto <onboarding@resend.dev>',
+      to: ['artem.yogi@gmail.com'],
       subject: 'New Order',
       react: EmailTemplate(body),
     })

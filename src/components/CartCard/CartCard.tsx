@@ -1,9 +1,9 @@
 import Image from 'next/image'
-import { CartItem } from '../../../types.ts'
+import { CartItem } from '../../../types'
 import styles from './CartCard.module.css'
-import AddRemoveButton from '../AddRemoveButton/AddRemoveButton.tsx'
+import AddRemoveButton from '../AddRemoveButton/AddRemoveButton'
 import { useDispatch } from 'react-redux'
-import { removeItemFromCart } from '../../redux/features/cart-slice.tsx'
+import { removeItemFromCart } from '../../redux/features/cart-slice'
 import { useState } from 'react'
 
 export default function CartCard({ cartItem }: { cartItem: CartItem }) {

@@ -9,7 +9,7 @@ export default function Order() {
 
   const sendMail = async () => {
     try {
-      const sendEmail = await fetch('http://localhost:3000/api/email', {
+      const sendEmail = await fetch('https://studiopresto.vercel.app/api/email', {
         method: 'POST',
         body: JSON.stringify({ cartList, totalPrice }),
       })

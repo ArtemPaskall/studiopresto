@@ -1,7 +1,7 @@
 'use client'
 import { selectCart } from '../../redux/features/cart-slice'
 import { useSelector } from 'react-redux'
-import CartCard from '../../components/CartCard/CartCard'
+import CartCard from '@/components/CartCard/CartCard'
 import Link from 'next/link'
 import OrderButton from '../../components/OrderButton/OrderButton'
 import { CartItem } from '../../../types'

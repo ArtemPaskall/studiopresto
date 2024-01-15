@@ -1,56 +1,119 @@
-'use client'
-import './OrderForm.css'
-import { useState } from 'react'
+import React, { ChangeEvent, FormEvent, useState } from 'react';
+import './OrderForm.css';
 
-export default function OrderForm() {
-  const [name, setName] = useState('')
-  const [email, setEmail] = useState('')
-  const [phone, setPhone] = useState('')
+interface FormData {
+  name: string;
+  email: string;
+  phone: string;
+}
 
-  const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setName(e.target.value)
-  }
+interface FormErrors {
+  name?: string;
+  email?: string;
+  phone?: string;
+}
 
-  const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setEmail(e.target.value)
-  }
+const OrderForm: React.FC = () => {
+  const [formData, setFormData] = useState<FormData>({
+    name: '',
+    email: '',
+    phone: '',
+  });
 
-  const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setPhone(e.target.value)
-  }
+  const [errors, setErrors] = useState<FormErrors>({
+    name: '',
+    email: '',
+    phone: '',
+  });
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
-    console.log(`%cName: ${name}`, 'color: red; font-size: 1.2rem; font-weight: bold;')
-    console.log('Email:', email)
-    console.log('Phone:', phone)
-  }
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+    // Reset the corresponding error when the user types
+    setErrors({
+      ...errors,
+      [name]: '',
+    });
+  };
+
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    // Perform validation
+    const newErrors: FormErrors = {};
+    if (!formData.name.trim()) {
+      newErrors.name = 'Name is required';
+    }
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!formData.email.trim() || !emailRegex.test(formData.email)) {
+      newErrors.email = 'Invalid email address';
+    }
+
+    const phoneRegex = /^\d{10}$/;
+    if (!formData.phone.trim() || !phoneRegex.test(formData.phone)) {
+      newErrors.phone = 'Invalid phone number (10 digits)';
+    }
+
+    if (Object.keys(newErrors).length > 0) {
+      // There are errors, set them in the state
+      setErrors(newErrors);
+    } else {
+      // No errors, submit the form (you can replace this with your actual submit logic)
+      console.log('Form submitted:', formData);
+    }
+    
+    console.log('Form submitted:', formData);
+  };
 
   return (
     <>
       <form onSubmit={handleSubmit} className="order-form">
-        <input
-          type="text"
-          value={name}
-          placeholder="Name"
-          onChange={handleNameChange}
-          className="input"
-        />
-        <input
-          type="email"
-          value={email}
-          onChange={handleEmailChange}
-          placeholder="Email"
-          className="input"
-        />
-        <input
-          type="tel"
-          value={phone}
-          onChange={handlePhoneChange}
-          placeholder="Phone"
-          className="input"
-        />
+        <div>
+          <label>Name:</label>
+          <input
+            type="text"
+            name="name"
+            value={formData.name}
+            onChange={handleChange}
+            className="input"
+          />
+          {errors.name && <span style={{ color: 'red' }}>{errors.name}</span>}
+        </div>
+
+        <div>
+          <label>Email:</label>
+          <input
+            type="text"
+            name="email"
+            value={formData.email}
+            onChange={handleChange}
+            className="input"
+          />
+          {errors.email && <span style={{ color: 'red' }}>{errors.email}</span>}
+        </div>
+
+        <div>
+          <label>Phone:</label>
+          <input
+            type="text"
+            name="phone"
+            value={formData.phone}
+            onChange={handleChange}
+            className="input"
+          />
+          {errors.phone && <span style={{ color: 'red' }}>{errors.phone}</span>}
+        </div>
+
+        <button type="submit" disabled={Object.keys(errors).length > 0}>
+          Submit
+        </button>
       </form>
     </>
-  )
-}
+  );
+};
+
+export default OrderForm;

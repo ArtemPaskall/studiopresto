@@ -1,5 +1,18 @@
 'use client'
 
-export default function Error({ error }: { error: Error }) {
-  return <div className="flex justify-center font-bold text-lg my-4">Oooops!. {error.message}</div>
+export default function GlobalError({
+  error,
+  reset,
+}: {
+  error: Error & { digest?: string }
+  reset: () => void
+}) {
+  return (
+    <html>
+      <body>
+        <h2>Something went wrong!</h2>
+        <button onClick={() => reset()}>Try again</button>
+      </body>
+    </html>
+  )
 }

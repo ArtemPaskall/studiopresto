@@ -8,13 +8,12 @@ export default function Order() {
   const { cartList, totalPrice } = useSelector(selectCart)
 
   const sendMail = async () => {
-
     try {
       const sendEmail = await fetch('/api/email', {
         method: 'POST',
         body: JSON.stringify({ cartList, totalPrice }),
       })
-      
+
       const data = await sendEmail.json()
       console.log(data)
     } catch (error) {

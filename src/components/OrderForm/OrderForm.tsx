@@ -1,11 +1,10 @@
 import './OrderForm.css'
-import { ChangeEvent, FormEvent, useState } from 'react'
+import { ChangeEvent, FormEvent, useEffect, useState } from 'react'
 import { FormData } from '../../../types'
 import { useDispatch } from 'react-redux'
 import { setCustomerInfo } from '../../redux/features/cart-slice'
 import { useSelector } from 'react-redux'
 import { selectCart } from '../../redux/features/cart-slice'
-import { set } from 'react-hook-form'
 
 interface FormErrors {
   name?: string
@@ -37,7 +36,7 @@ const OrderForm = () => {
         method: 'POST',
         body: JSON.stringify({ cartList, totalPrice, customerInfo }),
       })
-  
+
       const data = await sendEmail.json()
 
       if (data.id) {
@@ -83,16 +82,51 @@ const OrderForm = () => {
     if (Object.keys(newErrors).length > 0) {
       setErrors(newErrors)
     } else {
-      console.log('Form submitted:', formData)
       dispatach(setCustomerInfo(formData))
       sendMail(formData)
+
+      console.log('%cCustomer Info:', 'color: purple; font-size: 18px; font-weight: bold;')
+      console.log(
+        '%cName: %c' + formData.name,
+        'color: green; font-size: 16px;  font-weight: bold;',
+        'color: blue; font-size: 16px; font-weight: bold;',
+      )
+      console.log(
+        '%cEmail: %c' + formData.email,
+        'color: green; font-size: 16px;  font-weight: bold;',
+        'color: blue; font-size: 16px; font-weight: bold;',
+      )
+      console.log(
+        '%cPhone: %c' + formData.phone,
+        'color: green; font-size: 16px;  font-weight: bold;',
+        'color: blue; font-size: 16px; font-weight: bold;',
+      )
+
+      console.log('%cProduct List:', 'color: purple; font-size: 18px; font-weight: bold;')
+      cartList.forEach(cartItem => {
+        console.log(
+          '%c' + cartItem.product.title,
+          'color: red; font-size: 12px; font-weight: bold;',
+        )
+        console.log('%c' + cartItem.quantity, 'color: red; font-size: 12px; font-weight: bold;')
+      })
     }
   }
+
+  useEffect(() => {
+    dispatach(
+      setCustomerInfo({
+        name: '',
+        email: '',
+        phone: '',
+      }),
+    )
+  }, [dispatach])
 
   return (
     <>
       <form onSubmit={handleSubmit} className="order-form">
-        <div>
+        <div className="input-wrapper">
           <input
             type="text"
             name="name"
@@ -101,10 +135,10 @@ const OrderForm = () => {
             onChange={handleChange}
             className="input"
           />
-          {errors.name && <span style={{ color: 'red' }}>{errors.name}</span>}
+          {errors.name && <span className="input-error">{errors.name}</span>}
         </div>
 
-        <div>
+        <div className="input-wrapper">
           <input
             type="text"
             name="email"
@@ -113,10 +147,10 @@ const OrderForm = () => {
             onChange={handleChange}
             className="input"
           />
-          {errors.email && <span style={{ color: 'red' }}>{errors.email}</span>}
+          {errors.email && <span className="input-error">{errors.email}</span>}
         </div>
 
-        <div>
+        <div className="input-wrapper">
           <input
             type="text"
             name="phone"
@@ -125,7 +159,7 @@ const OrderForm = () => {
             onChange={handleChange}
             className="input"
           />
-          {errors.phone && <span style={{ color: 'red' }}>{errors.phone}</span>}
+          {errors.phone && <span className="input-error">{errors.phone}</span>}
         </div>
 
         <button
@@ -137,13 +171,11 @@ const OrderForm = () => {
         </button>
       </form>
 
-      {
-        sendMailResponse && (
-          <div className="text-center mt-4">
-            <span>{sendMailResponse}</span>
-          </div>
-        )
-      }
+      {sendMailResponse && (
+        <div className="text-center mt-4">
+          <span className="font-bold text-xl text-blue-700">{sendMailResponse}</span>
+        </div>
+      )}
     </>
   )
 }

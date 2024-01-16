@@ -5,6 +5,10 @@
   width: 100%;
 }
 
+.input-wrapper {
+  position: relative;
+}
+
 .input {
   width: 320px;
   height: 40px;
@@ -12,4 +16,13 @@
   margin-top: 10px;
   padding: 10px;
   outline: none;
+}
+
+.input-error {
+  position: absolute;
+  color: red;
+  width: 100%;
+  top: 50%;
+  font-size: 14px;
+  transform: translate(2%, -30%);
 }

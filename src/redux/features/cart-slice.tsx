@@ -52,11 +52,12 @@ const cartSlice = createSlice({
     },
     setCustomerInfo: (state, action: PayloadAction<FormData>) => {
       state.customerInfo = action.payload
-    }
+    },
   },
 })
 
-export const { addOneToCart, removeOneFromCart, removeItemFromCart, setCustomerInfo } = cartSlice.actions
+export const { addOneToCart, removeOneFromCart, removeItemFromCart, setCustomerInfo } =
+  cartSlice.actions
 
 export const selectCart = (state: { cart: CartState }) => state.cart
 

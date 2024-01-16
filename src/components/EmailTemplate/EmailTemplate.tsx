@@ -10,12 +10,14 @@ export default function EmailTemplate({
   customerInfo: FormData
 }) {
   return (
-    <>
-      <div style={{display: 'flex', justifyContent: 'flex-start', width: '100%', marginTop: '15px'}}>
-       {Object.keys(customerInfo).map((key: string) => {
+    <div style={{ color: 'black', width: '100%' }}>
+      <div style={{ display: 'flex', justifyContent: 'flex-start', marginTop: '15px' }}>
+        {Object.keys(customerInfo).map((key: string) => {
           return (
-            <div key={key} style={{marginRight: '25px'}}>
-              <span style={{textTransform: 'capitalize', paddingRight: '5px'}}>
+            <div key={key} style={{ marginRight: '25px' }}>
+              <span
+                style={{ textTransform: 'capitalize', paddingRight: '5px', fontWeight: 'bold' }}
+              >
                 {key}:
               </span>
               <span>{customerInfo[key as keyof FormData]}</span>
@@ -68,6 +70,6 @@ export default function EmailTemplate({
         </span>
         <span style={{ fontWeight: 'bold', fontSize: '18px' }}>{totalPrice.toFixed(2)} $</span>
       </div>
-    </>
+    </div>
   )
 }

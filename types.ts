@@ -19,4 +19,11 @@ export type CartItem = {
 export type CartState = {
   cartList: CartItem[]
   totalPrice: number
+  customerInfo: FormData
+}
+
+export type FormData = {
+  name: string
+  email: string
+  phone: string
 }

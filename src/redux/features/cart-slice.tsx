@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { Product, CartState, CartItem } from '../../../types'
+import { Product, CartState, CartItem, FormData } from '../../../types'
 
 const calculateTotalPrice = (cartList: CartItem[]) => {
   return cartList.reduce((acc, cartItem) => {
@@ -14,6 +14,11 @@ const cartSlice = createSlice({
   initialState: {
     cartList: [],
     totalPrice: 0,
+    customerInfo: {
+      name: '',
+      email: '',
+      phone: '',
+    },
   } as CartState,
   reducers: {
     addOneToCart: (state, action: PayloadAction<Product>) => {
@@ -45,10 +50,13 @@ const cartSlice = createSlice({
       state.cartList = state.cartList.filter(item => item.product.id !== productIdToRemove)
       state.totalPrice = calculateTotalPrice(state.cartList)
     },
+    setCustomerInfo: (state, action: PayloadAction<FormData>) => {
+      state.customerInfo = action.payload
+    }
   },
 })
 
-export const { addOneToCart, removeOneFromCart, removeItemFromCart } = cartSlice.actions
+export const { addOneToCart, removeOneFromCart, removeItemFromCart, setCustomerInfo } = cartSlice.actions
 
 export const selectCart = (state: { cart: CartState }) => state.cart
 

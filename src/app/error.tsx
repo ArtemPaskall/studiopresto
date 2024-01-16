@@ -9,9 +9,9 @@ export default function GlobalError({
 }) {
   return (
     <html>
-      <body>
-        <h2>Something went wrong!</h2>
-        <button onClick={() => reset()}>Try again</button>
+      <body className="flex flex-col items-center justify-center">
+        <div className="text-2xl font-bold">Something went wrong!</div>
+        <div onClick={() => reset()} className="text-2xl font-bold bg-gray-600 p-2 text-white cursor-pointer">Try again</div>
       </body>
     </html>
   )

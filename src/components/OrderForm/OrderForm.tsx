@@ -1,82 +1,102 @@
-import React, { ChangeEvent, FormEvent, useState } from 'react';
-import './OrderForm.css';
-
-interface FormData {
-  name: string;
-  email: string;
-  phone: string;
-}
+import './OrderForm.css'
+import { ChangeEvent, FormEvent, useState } from 'react'
+import { FormData } from '../../../types'
+import { useDispatch } from 'react-redux'
+import { setCustomerInfo } from '../../redux/features/cart-slice'
+import { useSelector } from 'react-redux'
+import { selectCart } from '../../redux/features/cart-slice'
+import { set } from 'react-hook-form'
 
 interface FormErrors {
-  name?: string;
-  email?: string;
-  phone?: string;
+  name?: string
+  email?: string
+  phone?: string
 }
 
-const OrderForm: React.FC = () => {
+const OrderForm = () => {
+  const [sendMailResponse, setSendMailResponse] = useState<string | null>(null)
+  const { cartList, totalPrice } = useSelector(selectCart)
+  const dispatach = useDispatch()
   const [formData, setFormData] = useState<FormData>({
     name: '',
     email: '',
     phone: '',
-  });
+  })
 
   const [errors, setErrors] = useState<FormErrors>({
     name: '',
     email: '',
     phone: '',
-  });
+  })
+
+  const sendMail = async (customerInfo: FormData) => {
+    setSendMailResponse(null)
+    try {
+      console.log()
+      const sendEmail = await fetch('/api/email', {
+        method: 'POST',
+        body: JSON.stringify({ cartList, totalPrice, customerInfo }),
+      })
+  
+      const data = await sendEmail.json()
+
+      if (data.id) {
+        setSendMailResponse('Email sent successfully')
+      }
+    } catch (error) {
+      setSendMailResponse('Error sending email')
+    }
+  }
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
+    const { name, value } = e.target
+
     setFormData({
       ...formData,
       [name]: value,
-    });
-    // Reset the corresponding error when the user types
+    })
+
     setErrors({
       ...errors,
       [name]: '',
-    });
-  };
+    })
+  }
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+    e.preventDefault()
 
-    // Perform validation
-    const newErrors: FormErrors = {};
+    const newErrors: FormErrors = {}
     if (!formData.name.trim()) {
-      newErrors.name = 'Name is required';
+      newErrors.name = 'Name is required'
     }
 
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
     if (!formData.email.trim() || !emailRegex.test(formData.email)) {
-      newErrors.email = 'Invalid email address';
+      newErrors.email = 'Invalid email address'
     }
 
-    const phoneRegex = /^\d{10}$/;
+    const phoneRegex = /^\d{10}$/
     if (!formData.phone.trim() || !phoneRegex.test(formData.phone)) {
-      newErrors.phone = 'Invalid phone number (10 digits)';
+      newErrors.phone = 'Invalid phone number (10 digits)'
     }
 
     if (Object.keys(newErrors).length > 0) {
-      // There are errors, set them in the state
-      setErrors(newErrors);
+      setErrors(newErrors)
     } else {
-      // No errors, submit the form (you can replace this with your actual submit logic)
-      console.log('Form submitted:', formData);
+      console.log('Form submitted:', formData)
+      dispatach(setCustomerInfo(formData))
+      sendMail(formData)
     }
-    
-    console.log('Form submitted:', formData);
-  };
+  }
 
   return (
     <>
       <form onSubmit={handleSubmit} className="order-form">
         <div>
-          <label>Name:</label>
           <input
             type="text"
             name="name"
+            placeholder="Name"
             value={formData.name}
             onChange={handleChange}
             className="input"
@@ -85,10 +105,10 @@ const OrderForm: React.FC = () => {
         </div>
 
         <div>
-          <label>Email:</label>
           <input
             type="text"
             name="email"
+            placeholder="Email"
             value={formData.email}
             onChange={handleChange}
             className="input"
@@ -97,10 +117,10 @@ const OrderForm: React.FC = () => {
         </div>
 
         <div>
-          <label>Phone:</label>
           <input
             type="text"
             name="phone"
+            placeholder="Phone"
             value={formData.phone}
             onChange={handleChange}
             className="input"
@@ -108,12 +128,24 @@ const OrderForm: React.FC = () => {
           {errors.phone && <span style={{ color: 'red' }}>{errors.phone}</span>}
         </div>
 
-        <button type="submit" disabled={Object.keys(errors).length > 0}>
-          Submit
+        <button
+          type="submit"
+          className="bg-green-600 hover:bg-green-700 text-white
+              font-bold py-2 px-4 w-80 mt-4 cursor-pointer flex justify-center"
+        >
+          SUBMIT
         </button>
       </form>
-    </>
-  );
-};
 
-export default OrderForm;
+      {
+        sendMailResponse && (
+          <div className="text-center mt-4">
+            <span>{sendMailResponse}</span>
+          </div>
+        )
+      }
+    </>
+  )
+}
+
+export default OrderForm

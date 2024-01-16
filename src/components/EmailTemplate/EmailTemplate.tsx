@@ -1,8 +1,28 @@
-import { CartState } from '../../../types'
+import { CartItem, FormData } from '../../../types'
 
-export default function EmailTemplate({ cartList, totalPrice }: CartState) {
+export default function EmailTemplate({
+  cartList,
+  totalPrice,
+  customerInfo,
+}: {
+  cartList: CartItem[]
+  totalPrice: number
+  customerInfo: FormData
+}) {
   return (
     <>
+      <div style={{display: 'flex', justifyContent: 'flex-start', width: '100%', marginTop: '15px'}}>
+       {Object.keys(customerInfo).map((key: string) => {
+          return (
+            <div key={key} style={{marginRight: '25px'}}>
+              <span style={{textTransform: 'capitalize', paddingRight: '5px'}}>
+                {key}:
+              </span>
+              <span>{customerInfo[key as keyof FormData]}</span>
+            </div>
+          )
+        })}
+      </div>
       <table
         style={{ borderCollapse: 'collapse', width: '100%', marginTop: '10px', color: 'black' }}
       >

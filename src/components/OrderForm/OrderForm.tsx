@@ -43,6 +43,7 @@ const OrderForm = () => {
         setSendMailResponse('Email sent successfully')
       }
     } catch (error) {
+      console.log(error)
       setSendMailResponse('Error sending email')
     }
   }

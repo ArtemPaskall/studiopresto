@@ -13,6 +13,9 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
+      <head>
+        <link rel="icon" href="/Vercel_favicon.svg" />
+      </head>
       <body className={roboto.className}>
         <ReduxProvider>
           <Header />

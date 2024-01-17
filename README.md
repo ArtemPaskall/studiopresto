@@ -1,4 +1,4 @@
-#This is a Next.js + Redux Toolkit + TailWind project
+# This is a Next.js + Redux Toolkit + TailWind project
 
 ## Getting Started
 
@@ -38,5 +38,5 @@ pnpm dev
 bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result. or you can
-watch the demo [here](https://studiopresto.vercel.app/)
+### Open [http://localhost:3000](http://localhost:3000) with your browser to see the result 
+### or you can watch the demo [here](https://studiopresto.vercel.app/)

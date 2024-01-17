@@ -39,4 +39,4 @@ bun dev
 ```
 
 ### Open [http://localhost:3000](http://localhost:3000) with your browser to see the result 
-### or you can watch the demo [here](https://studiopresto.vercel.app/)
+### Or you can watch the [DEMO](https://studiopresto.vercel.app/)

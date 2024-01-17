@@ -1,6 +1,6 @@
 import { Resend } from 'resend'
 import { NextResponse } from 'next/server'
-import EmailTemplate from '../../../components/EmailTemplate/EmailTemplate'
+import EmailTemplate from '../../../components/EmailTemplate'
 
 export async function POST(req: any) {
   try {
@@ -10,7 +10,7 @@ export async function POST(req: any) {
 
     const { data } = await resend.emails.send({
       from: 'Studiopresto <onboarding@resend.dev>',
-      to: ['artem.yogi@gmail.com'],
+      to: ['hello@studiopresto.com'],
       subject: 'New Order',
       react: EmailTemplate(body),
     })

@@ -1,6 +1,6 @@
 'use client'
 import { useSelector } from 'react-redux'
-import EmailTemplate from '../../components/EmailTemplate/EmailTemplate'
+import EmailTemplate from '../../components/EmailTemplate'
 import { selectCart } from '../../redux/features/cart-slice'
 import OrderForm from '../../components/OrderForm/OrderForm'
 

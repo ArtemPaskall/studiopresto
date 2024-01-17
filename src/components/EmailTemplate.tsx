@@ -1,4 +1,4 @@
-import { CartItem, FormData } from '../../../types'
+import { CartItem, FormData } from '../../types'
 
 export default function EmailTemplate({
   cartList,

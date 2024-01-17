@@ -2,7 +2,6 @@ import Image from 'next/image'
 import { Product } from '../../../../types'
 import BuyButton from '../../../components/BuyButton/BuyButton'
 import Rating from '../../../components/Rating'
-import Spiner from '../../../components/Spiner/Spiner'
 
 async function getProduct(id: number) {
   const res = await fetch(`https://fakestoreapi.com/products/${id}`)
